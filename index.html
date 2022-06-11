@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchDogs</title>
+    <style>
+
+        body{
+            margin: 0px;
+        }
+        #contenido{
+            width: 100%;
+            height: 100%;
+            background-image: url(./background.jpg);
+            background-position: center;
+            background-size: cover;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            zoom: 0.9;
+        }
+        #form{
+            width: 300px;
+            height: 300px;
+            border:5px dotted white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transform-style: preserve-3d;
+            
+            
+            
+        }
+        .itemForm{
+            width: 80px;
+            height: 90px;
+            border:1px solid rgb(117, 117, 117);
+            background-color: rgba(255, 255, 255, 0.192);
+            border-radius: 10px 0px 20px 0px;
+            box-shadow: 0px 0px 10px rgb(0, 0, 0);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            
+        }
+        .itemForm:hover{
+            width: 100px;
+            height: 100px;
+            -webkit-transition: all .5s ease;;
+            box-shadow: 0px 0px 10px white;
+        }
+        #a1{
+            background-image:url('https://cdn-icons-png.flaticon.com/512/25/25694.png');
+            background-position: center;
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translateY(-150px) ;
+        }
+        #a2{
+            background-image:url('https://cdn-icons.flaticon.com/png/512/1975/premium/1975660.png?token=exp=1652636519~hmac=c7166beb118605070d1048acad5656fa');
+            background-position: center;
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translateY(140px) translateX(-80px);
+        }
+        
+        #a3{
+            background-image:url('https://cdn-icons-png.flaticon.com/512/3267/3267400.png');
+            background-position: center;
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translateX(-150px) translateY(-10px) ;;
+        }
+        #a4{
+            background-image:url('https://cdn-icons-png.flaticon.com/512/48/48688.png');
+            background-position: center;
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translateX(150px) translateY(-10px);
+        }    
+        #a5{
+            background-image:url('https://cdn-icons-png.flaticon.com/512/854/854980.png');
+            background-position: center;
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translateY(140px) translateX(80px);
+        }    
+
+
+
+
+
+        
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+
+        $(document).ready(function(){
+            
+            function map( x,  in_min,  in_max,  out_min,  out_max) {
+                return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+            }
+            
+            var move = false;
+
+            $(document).mousemove(function(e){
+
+                var x = e.clientX;
+                var y = e.clientY;
+
+                var xt =  -map(x,0,$(document).width(),80,-80)
+
+                var yt =  -map(y,0,$(document).height(),-80,80)
+                if(move){
+                    $("#form").css({
+                    "border":"0px dotted white",
+                     "transform":"rotateX("+yt+"deg) rotateY("+xt+"deg)",
+                     "transition":"all 0s ease"
+
+                    });
+                }
+ 
+
+            });
+
+            $(document).mousedown(function(){
+
+                move =  true;      
+        
+            });
+
+            $(document).mouseup(function(){
+                $("#form").css({
+                    "border":"5px dotted white",
+                    "transform":"rotateX(0deg) rotateY(0deg)",
+                    "transition":"all .5s ease"
+                });
+                                
+                move = false;
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <div id="contenido">
+
+
+        <div id="form">
+
+            <div class="itemForm" id="a1"></div>
+            <div class="itemForm" id="a2"></div>
+            <div class="itemForm" id="a3"></div>
+            <div class="itemForm" id="a4"></div>
+            <div class="itemForm" id="a5"></div>
+        
+
+        </div>
+
+
+    </div>
+</body>
+</html>
